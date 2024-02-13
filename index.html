@@ -76,11 +76,12 @@
 
         const handleInputChange = (e) => {
             setQuery(e.target.value);
+            if(e.target.value.length > 2) onSearch(query);
         };
 
         const handleSearch = () => {
             // Pass the search query to the parent component
-            onSearch(query);
+            // onSearch(query);
         };
 
         return (
@@ -95,12 +96,27 @@
             </div>
         );
     };
+    
+    //LIST OF ELEMENT IN LINE
+    const InlineList = ({ items }) => {
+        return (
+            <div className="inline-list">
+                {items.map((item, index) => (
+                    <div key={index} className="list-item">
+                        {item}
+                    </div>
+                ))}
+            </div>
+        );
+    }
+
     </script>
 
     <!-- Your React components will be placed in the following script tag -->
     <script type="text/babel">
 
         const App = () => {
+            const items = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6','Item 7','Item 8','Item 9','Item 10'];
             const handleSearch = (query) => {
                 // Handle the search logic here (e.g., fetch data, filter results)
                 console.log('Search Query:', query);
@@ -111,6 +127,7 @@
                     <Navigation />
                     <LeafletMap />
                     <SearchBar onSearch={handleSearch} />
+                    <InlineList items={items} />
                 </div>
             );
         }
