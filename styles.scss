@@ -105,7 +105,35 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 10px 15%;
-    padding: 10px;
+    margin: 10px 0 0 15%;
+    padding: -10px 0 0 0;
+    overflow-x: auto;
+    scrollbar-width: thin;
     // border: 1px dashed #ccc; 
+}
+
+/* ELEMENT styles */
+.element-with-image-and-text {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    min-width: 200px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 10px;
+
+    .element-image {
+        max-width: 100px;
+        border-radius: 50%;
+        margin-right: 20px;
+        border: 1px dashed #ccc;
+    }
+
+    .element-text {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        margin: 0;
+    }
 }
