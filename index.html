@@ -21,6 +21,8 @@
     <!-- Leaflet JavaScript -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
+    <!-- DATA -->
+    <script src="./data/bordeaux_iso_20min.js"></script>
 
     <!-- COMPONENTS -->
     <script type="text/babel">
@@ -45,15 +47,17 @@
     const LeafletMap = () => {
         React.useEffect(() => {
             // Create a Leaflet map centered at [0, 0] with zoom level 2
-            const map = L.map('map', { scrollWheelZoom:false }).setView([48.84100818113699, 2.32004405985087], 12);
+            const map = L.map('map', { scrollWheelZoom:false });
+                // .setView([44.82548830107521, -0.5563682436017133], 12);
 
-            // Add a circle marker to the map
-            const circle = L.circle([48.84100818113699, 2.32004405985087], { color: 'grey' }).addTo(map);
 
             // Add a tile layer using CDN links
-            L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png?&api_key=a31200ab-bc94-4e77-b6d9-87fb29b52314', {
-                attribution: '© Map tiles by Stamen Design'
-            }).addTo(map);
+            L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png?&api_key=a31200ab-bc94-4e77-b6d9-87fb29b52314').addTo(map);
+
+            //GEOJSON FROM DATA
+            var geojson_bordeaux = L.geoJSON(bordeaux_iso_20min, {  }).addTo(map);
+            map.fitBounds(geojson_bordeaux.getBounds());
+            map.setZoom(12);
 
             return () => {
                 // Clean up the map when the component is unmounted
@@ -186,6 +190,7 @@
             const handleSearch = (query) => {
                 // Handle the search logic here (e.g., fetch data, filter results)
                 console.log('Search Query:', query);
+                console.log('DATA:', bordeaux_iso_20min);
             };
             
             return (

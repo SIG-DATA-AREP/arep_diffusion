@@ -124,6 +124,7 @@ nav {
   border: 1px solid #ccc;
   padding: 5px;
   border-radius: 10px;
+  cursor: pointer;
 }
 .element-with-image-and-text .element-image {
   max-width: 100px;
