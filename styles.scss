@@ -1,0 +1,76 @@
+/* Your global styles can go here */
+body {
+    margin: 0;
+    padding: 0 10%;
+    font-family: 'Segoe UI', sans-serif, Tahoma, Verdana;
+    background-color: #ccc;
+}
+#main{
+    background-color: #fff;
+    height: 899px;
+}
+
+/* Navigation styles */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    color: #000;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.logo img {
+    max-height: 30px;
+}
+
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.menu li {
+    margin-right: 20px;
+}
+
+.menu a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #000;
+    padding: 0 5px 3px 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.menu a:hover{
+    box-shadow: #ccc 2px 2px 1px 1px;
+}
+
+/* MAP styles */
+.LeafletMap{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 15%;
+}
+.LeafletMap-arrow{
+    cursor: pointer;
+}
+/* Add hover animation for .LeafletMap and .LeafletMap-arrow */
+.LeafletMap-arrow:hover {
+    transform: scale(1.1); /* Adjust the scale factor as needed */
+    transition: transform 0.3s ease-in-out;
+}
+
+.LeafletMap-arrow:hover .LeafletMap-arrow {
+    transform: scale(1.2); /* Adjust the scale factor as needed */
+    transition: transform 0.3s ease-in-out;
+}
+
+#map{
+    border: 1px solid #ccc;
+    box-shadow: #ccc 1px 2px 2px 3px;
+}
