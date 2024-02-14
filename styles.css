@@ -1,9 +1,9 @@
 /* Your global styles can go here */
 body {
   margin: 0;
-  padding: 0 10%;
+  padding: 0;
   font-family: "Segoe UI", sans-serif, Tahoma, Verdana;
-  background-color: #ccc;
+  /* background-color: #ccc; */
 }
 
 #main {

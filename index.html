@@ -8,6 +8,9 @@
     <!-- Add the link to the SCSS style sheet -->
     <link rel="stylesheet" href="styles.css">
 
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-VFMgtYsbkEX9PC0Q/3M3N15zkNxdMKvyB11EyuAVv3xj3tx8e7LKX6yKU4sjo8PVnrDUEBy9QaQZayQEXbbKGg==" crossorigin="anonymous" />
+
     <!-- React CDN links -->
     <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
@@ -67,9 +70,9 @@
         
         return (
             <div className='LeafletMap'>
-                <img className='LeafletMap-arrow' src="img/left-arrow.png" alt="left" />
+                <div className="LeafletMap-arrow"> 	&#x3008; </div>
                 <div id="map" style={{ height: '500px', width: '500px', borderRadius: '50%', margin:'0 auto' }}></div>
-                <img className='LeafletMap-arrow' src="img/right-arrow.png" alt="right" />
+                <div className="LeafletMap-arrow"> 	&#x3009; </div>
             </div>
         );
     }
@@ -92,7 +95,7 @@
             <div className="search-bar">
                 <input
                     type="text"
-                    placeholder="Trouver une gares..."
+                    placeholder="Trouver une gare..."
                     value={query}
                     onChange={handleInputChange}
                 />
