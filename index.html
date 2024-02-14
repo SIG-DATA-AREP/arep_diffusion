@@ -28,6 +28,10 @@
     <script src="./data/bordeaux_iso_20min.js"></script>
     <script src="./data/bordeaux_iso_15min.js"></script>
     <script src="./data/bordeaux_iso_10min.js"></script>
+    <script src="./data/lyon_iso_15min.js"></script>
+    <script src="./data/marseille_iso_15min.js"></script>
+    <script src="./data/nantes_iso_15min.js"></script>
+    <script src="./data/strasbourg_iso_15min.js"></script>
 
     <script src="./data/data_geojson.js"></script>
 
@@ -122,6 +126,7 @@
                         <ElementWithImageAndText
                             key={index}
                             imageUrl={item.imageUrl}
+                            code={item.code}
                             text={item.text}
                         />
                     </div>
@@ -131,11 +136,11 @@
     }
 
     //ELEMENT
-    const ElementWithImageAndText = ({ imageUrl, text }) => {
+    const ElementWithImageAndText = ({ imageUrl, code, text }) => {
         return (
             <div className="element-with-image-and-text">
                 <img src={imageUrl} alt="Element Image" className="element-image" />
-                <p className="element-text">{text}</p>
+                <p className="element-text"> UIC:{code} <br/> {text}</p>
             </div>
         );
     }
@@ -146,58 +151,15 @@
     <script type="text/babel">
 
         const App = () => {
-            const items = [
-                { imageUrl: './img/world_map.png', text: 'Gare de ...1' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...2' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...3' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...4' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...5' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...6' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...7' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...8' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...9' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...10' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...11' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...12' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...13' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...14' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...15' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...16' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...17' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...18' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...19' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...20' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...21' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...22' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...23' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...24' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...25' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...26' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...27' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...28' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...29' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...30' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...31' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...32' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...33' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...34' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...35' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...36' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...37' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...38' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...39' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...40' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...41' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...42' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...43' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...44' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...45' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...46' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...47' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...48' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...49' },
-                { imageUrl: './img/world_map.png', text: 'Gare de ...50' },
-            ];
+            const items = [];
+            Object.keys(list_of_gares).forEach(function(key) {
+                items.push({
+                    imageUrl: "./img/"+key+".png", 
+                    code: list_of_gares[key][0].code_uic,
+                    text: list_of_gares[key][0].name,
+                });
+            });
+
             const handleSearch = (query) => {
                 // Handle the search logic here (e.g., fetch data, filter results)
                 console.log('Search Query:', query);
