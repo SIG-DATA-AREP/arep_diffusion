@@ -139,8 +139,15 @@
     //ELEMENT
     const ElementWithImageAndText = ({ imageUrl, selected, code, text }) => {
         var selected = selected ? 'element-with-image-and-text selected' : 'element-with-image-and-text ';
+        const [query, setQuery] = React.useState('');
+
+        const handleClick = () => {
+            setQuery(code);
+            console.log("🚀 ~ handleClick ~ code:", code)
+        };
+        
         return (
-            <div className={selected}>
+            <div className={selected}  onClick={handleClick}>
                 <img src={imageUrl} alt="Element Image" className="element-image" />
                 <p className="element-text"> UIC:{code} <br/> {text}</p>
             </div>
