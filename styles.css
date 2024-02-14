@@ -1,9 +1,9 @@
 /* Your global styles can go here */
 body {
   margin: 0;
-  padding: 0;
+  padding: 0 10%;
   font-family: "Segoe UI", sans-serif, Tahoma, Verdana;
-  /* background-color: #ccc; */
+  background-color: #ccc;
 }
 
 #main {
@@ -46,7 +46,7 @@ nav {
 }
 
 .menu a:hover {
-  box-shadow: #ccc 1px 1px 2px 1px;
+  box-shadow: #ccc 0px 1px 1px 1px;
 }
 
 /* MAP styles */
@@ -74,7 +74,7 @@ nav {
 
 #map {
   border: 1px solid #ccc;
-  box-shadow: #ccc 1px 2px 1px 1px;
+  box-shadow: #ccc 1px 2px 2px 3px;
 }
 
 /* SEARCHBAR styles */

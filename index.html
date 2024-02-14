@@ -26,6 +26,10 @@
 
     <!-- DATA -->
     <script src="./data/bordeaux_iso_20min.js"></script>
+    <script src="./data/bordeaux_iso_15min.js"></script>
+    <script src="./data/bordeaux_iso_10min.js"></script>
+
+    <script src="./data/data_geojson.js"></script>
 
     <!-- COMPONENTS -->
     <script type="text/babel">
@@ -56,8 +60,14 @@
             L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png?&api_key=a31200ab-bc94-4e77-b6d9-87fb29b52314').addTo(map);
 
             //GEOJSON FROM DATA
-            var geojson_bordeaux = L.geoJSON(bordeaux_iso_20min, {  }).addTo(map);
-            map.fitBounds(geojson_bordeaux.getBounds());
+            const selected_gare = "bordeaux";
+            list_of_gares[selected_gare].forEach(iso => {
+                L.geoJSON(iso.feature, { 
+                    style: iso.style
+                }).addTo(map);
+            });
+
+            map.fitBounds(L.geoJSON((list_of_gares[selected_gare][0].feature)).getBounds());
             map.setZoom(12);
 
             return () => {
