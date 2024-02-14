@@ -55,7 +55,7 @@
     }
 
     //LEAFLET
-    const LeafletMap = () => {
+    const LeafletMap = ({selected_gare}) => {
         React.useEffect(() => {
             // Create a Leaflet map centered at [0, 0] with zoom level 2
             const map = L.map('map', { minZoom: 5 });
@@ -64,7 +64,7 @@
             L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png?&api_key=a31200ab-bc94-4e77-b6d9-87fb29b52314').addTo(map);
 
             //GEOJSON FROM DATA
-            const selected_gare = "bordeaux";
+            // const selected_gare = "bordeaux";
             list_of_gares[selected_gare].forEach(iso => {
                 L.geoJSON(iso.feature, { 
                     style: iso.style
@@ -126,6 +126,7 @@
                         <ElementWithImageAndText
                             key={index}
                             imageUrl={item.imageUrl}
+                            selected={item.selected}
                             code={item.code}
                             text={item.text}
                         />
@@ -136,9 +137,10 @@
     }
 
     //ELEMENT
-    const ElementWithImageAndText = ({ imageUrl, code, text }) => {
+    const ElementWithImageAndText = ({ imageUrl, selected, code, text }) => {
+        var selected = selected ? 'element-with-image-and-text selected' : 'element-with-image-and-text ';
         return (
-            <div className="element-with-image-and-text">
+            <div className={selected}>
                 <img src={imageUrl} alt="Element Image" className="element-image" />
                 <p className="element-text"> UIC:{code} <br/> {text}</p>
             </div>
@@ -152,8 +154,11 @@
 
         const App = () => {
             const items = [];
+            var selected_gare = 'lyon';
+
             Object.keys(list_of_gares).forEach(function(key) {
                 items.push({
+                    selected: selected_gare == key,
                     imageUrl: "./img/"+key+".png", 
                     code: list_of_gares[key][0].code_uic,
                     text: list_of_gares[key][0].name,
@@ -169,7 +174,7 @@
             return (
                 <div id='main'>
                     <Navigation />
-                    <LeafletMap />
+                    <LeafletMap selected_gare = {selected_gare} />
                     <SearchBar onSearch={handleSearch} />
                     <InlineList items={items} />
                 </div>
