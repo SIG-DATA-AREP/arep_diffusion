@@ -4,7 +4,8 @@ body {
     padding: 0;
     font-family: 'Segoe UI', sans-serif, Tahoma, Verdana;
 }
-#main{
+
+#main {
     background-color: #fff;
     height: 900px;
 }
@@ -43,43 +44,48 @@ nav {
     border-radius: 5px;
 }
 
-.menu a:hover{
+.menu a:hover {
     box-shadow: #ccc 0px 1px 1px 1px;
 }
 
 /* MAP styles */
-.LeafletMap{
+.LeafletMap {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 5px 15%;
 }
-.LeafletMap-arrow{
+
+.LeafletMap-arrow {
     cursor: pointer;
 }
+
 /* Add hover animation for .LeafletMap and .LeafletMap-arrow */
 .LeafletMap-arrow:hover {
-    transform: scale(1.1); /* Adjust the scale factor as needed */
+    transform: scale(1.1);
+    /* Adjust the scale factor as needed */
     transition: transform 0.3s ease-in-out;
 }
 
 .LeafletMap-arrow:hover .LeafletMap-arrow {
-    transform: scale(1.2); /* Adjust the scale factor as needed */
+    transform: scale(1.2);
+    /* Adjust the scale factor as needed */
     transition: transform 0.3s ease-in-out;
 }
 
-#map{
-    border: 1px solid #ccc;
-    box-shadow: #ccc 1px 2px 2px 3px;
+#map {
+    border: 1px solid #000;
+    // box-shadow: #ccc 1px 2px 2px 3px;
 }
 
 /* SEARCHBAR styles */
-.search-bar{
+.search-bar {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 5px auto;
-    input{
+
+    input {
         width: 15%;
         padding: 10px;
         margin: 10px 0;
@@ -87,7 +93,8 @@ nav {
         border-radius: 5px;
         text-align: center;
     }
-    button{
+
+    button {
         margin: -11px 0;
         padding: 10px;
         border: 1px solid #ccc;
@@ -97,7 +104,7 @@ nav {
 }
 
 /* InlineList styles */
-.inline-list{
+.inline-list {
     width: 70%;
     max-width: 70%;
     display: flex;
@@ -135,6 +142,7 @@ nav {
         font-size: 16px;
         margin: 0;
     }
+
     &:hover {
         box-shadow: #ccc 0px 1px 1px 1px;
     }

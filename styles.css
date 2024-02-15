@@ -62,18 +62,19 @@ nav {
 
 /* Add hover animation for .LeafletMap and .LeafletMap-arrow */
 .LeafletMap-arrow:hover {
-  transform: scale(1.1); /* Adjust the scale factor as needed */
+  transform: scale(1.1);
+  /* Adjust the scale factor as needed */
   transition: transform 0.3s ease-in-out;
 }
 
 .LeafletMap-arrow:hover .LeafletMap-arrow {
-  transform: scale(1.2); /* Adjust the scale factor as needed */
+  transform: scale(1.2);
+  /* Adjust the scale factor as needed */
   transition: transform 0.3s ease-in-out;
 }
 
 #map {
-  border: 1px solid #ccc;
-  box-shadow: #ccc 1px 2px 2px 3px;
+  border: 1px solid #000;
 }
 
 /* SEARCHBAR styles */
