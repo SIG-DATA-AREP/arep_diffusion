@@ -79,12 +79,19 @@
                 map.remove();
             };
         }, [props.selected_gare]); // Empty dependency array ensures this effect runs once when the component mounts
+
+        const movePrev = () => {
+            props.move_map('prev');
+        };
+        const moveNext = () => {
+            props.move_map('next');
+        };
         
         return (
             <div className='LeafletMap'>
-                <div className="LeafletMap-arrow"> 	&#x3008; </div>
+                <div className="LeafletMap-arrow" onClick={movePrev}> 	&#x3008; </div>
                 <div id="map" style={{ height: '500px', width: '500px', borderRadius: '50%', margin:'0 auto' }}></div>
-                <div className="LeafletMap-arrow"> 	&#x3009; </div>
+                <div className="LeafletMap-arrow" onClick={moveNext}> 	&#x3009; </div>
             </div>
         );
     }
@@ -192,6 +199,40 @@
                 setItems(items.map( e => e.keyword === key ? {...e, selected: true} : {...e, selected: false}));
             };
 
+            const moveMap = (who) => {
+                const keys = Object.keys(list_of_gares);
+                const index = keys.indexOf(selection);
+                var selected_key; 
+                if(who === 'prev') {
+                    if(index === 0) {
+                        setSelection(keys[keys.length - 1]);
+                        selected_key = keys[keys.length - 1];
+                        setItems(items.map( e => e.keyword === selected_key ? {...e, selected: true} : {...e, selected: false}));
+                        
+                    }
+                    else {
+                        setSelection(keys[index - 1]);
+                        selected_key = keys[index - 1];
+                        setItems(items.map( e => e.keyword === selected_key ? {...e, selected: true} : {...e, selected: false}));
+
+                    }
+                } else {
+                    if(index === keys.length - 1) {
+                        setSelection(keys[0]);
+                        selected_key = keys[0];
+                        setItems(items.map( e => e.keyword === selected_key ? {...e, selected: true} : {...e, selected: false}));
+
+                    }
+                    else {
+                        setSelection(keys[index + 1]);
+                        selected_key = keys[index + 1];
+                        setItems(items.map( e => e.keyword === selected_key ? {...e, selected: true} : {...e, selected: false}));
+
+                    }
+                }
+                
+            };
+
             const handleSearch = (query) => {
                 if(query.length > 1) setItems(items.filter(e => e.keyword.includes(query) ));
                 else setItems(items_1);
@@ -200,7 +241,7 @@
             return (
                 <div id='main'>
                     <Navigation />
-                    <LeafletMap selected_gare = {selection} />
+                    <LeafletMap move_map={moveMap} selected_gare = {selection} />
                     <SearchBar onSearch={handleSearch} />
                     <InlineList handleGetGare={get_key} items={items} />
                 </div>
