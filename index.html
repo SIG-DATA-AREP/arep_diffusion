@@ -95,7 +95,7 @@
 
         const handleInputChange = (e) => {
             setQuery(e.target.value);
-            if(e.target.value.length > 2) onSearch(query);
+            onSearch(query);
         };
 
         const handleSearch = () => {
@@ -193,8 +193,8 @@
             };
 
             const handleSearch = (query) => {
-                // Handle the search logic here (e.g., fetch data, filter results)
-                console.log('Search Query:', query);
+                if(query.length > 1) setItems(items.filter(e => e.keyword.includes(query) ));
+                else setItems(items_1);
             };
             
             return (
