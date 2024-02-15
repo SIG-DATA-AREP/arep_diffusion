@@ -55,7 +55,7 @@
     }
 
     //LEAFLET
-    const LeafletMap = ({selected_gare}) => {
+    const LeafletMap = (props) => {
         React.useEffect(() => {
             // Create a Leaflet map centered at [0, 0] with zoom level 2
             const map = L.map('map', { minZoom: 5 });
@@ -65,20 +65,20 @@
 
             //GEOJSON FROM DATA
             // const selected_gare = "bordeaux";
-            list_of_gares[selected_gare].forEach(iso => {
+            list_of_gares[props.selected_gare].forEach(iso => {
                 L.geoJSON(iso.feature, { 
                     style: iso.style
                 }).addTo(map);
             });
 
-            map.fitBounds(L.geoJSON((list_of_gares[selected_gare][0].feature)).getBounds());
-            map.setZoom(12);
+            map.fitBounds(L.geoJSON((list_of_gares[props.selected_gare][0].feature)).getBounds());
+            map.setZoom(11);
 
             return () => {
                 // Clean up the map when the component is unmounted
                 map.remove();
             };
-        }, []); // Empty dependency array ensures this effect runs once when the component mounts
+        }, [props.selected_gare]); // Empty dependency array ensures this effect runs once when the component mounts
         
         return (
             <div className='LeafletMap'>
@@ -117,10 +117,16 @@
     };
     
     //LIST OF ELEMENT IN LINE
-    const InlineList = ({ items }) => {
+    const InlineList = (props) => {
+        
+        const send_uic = (key) => {
+            // console.log("🚀 ~ getGare ~ code", code)
+            props.handleGetGare(key);
+        };
+
         return (
             <div className="inline-list">
-                {items.map((item, index) => (
+                {props.items.map((item, index) => (
                     <div key={index} className="list-item">
                         {/*item*/}
                         <ElementWithImageAndText
@@ -129,6 +135,8 @@
                             selected={item.selected}
                             code={item.code}
                             text={item.text}
+                            keyword={item.keyword}
+                            handleListClick={send_uic}
                         />
                     </div>
                 ))}
@@ -137,19 +145,18 @@
     }
 
     //ELEMENT
-    const ElementWithImageAndText = ({ imageUrl, selected, code, text }) => {
-        var selected = selected ? 'element-with-image-and-text selected' : 'element-with-image-and-text ';
-        const [query, setQuery] = React.useState('');
+    const ElementWithImageAndText = (props) => {
+        var selected = props.selected ? 'element-with-image-and-text selected' : 'element-with-image-and-text ';
 
-        const handleClick = () => {
-            setQuery(code);
-            console.log("🚀 ~ handleClick ~ code:", code)
+        const ElementClick = () => {
+            props.handleListClick(props.keyword);
+
         };
         
         return (
-            <div className={selected}  onClick={handleClick}>
-                <img src={imageUrl} alt="Element Image" className="element-image" />
-                <p className="element-text"> UIC:{code} <br/> {text}</p>
+            <div className={selected}  onClick={ElementClick}>
+                <img src={props.imageUrl} alt="Element Image" className="element-image" />
+                <p className="element-text"> UIC:{props.code} <br/> {props.text}</p>
             </div>
         );
     }
@@ -160,30 +167,42 @@
     <script type="text/babel">
 
         const App = () => {
-            const items = [];
-            var selected_gare = 'lyon';
+            const [selection, setSelection] = React.useState('lyon');
 
+            const items_1 = [];
             Object.keys(list_of_gares).forEach(function(key) {
-                items.push({
-                    selected: selected_gare == key,
+                items_1.push({
+                    selected: selection == key,
                     imageUrl: "./img/"+key+".png", 
                     code: list_of_gares[key][0].code_uic,
                     text: list_of_gares[key][0].name,
+                    keyword:key,
                 });
             });
+
+            const [items, setItems] = React.useState(items_1);
+
+            React.useEffect(() => {
+                // console.log('selection is now: ', selection);
+
+            }, [selection, items]);
+
+            const get_key = (key) => { 
+                setSelection(key);
+                setItems(items.map( e => e.keyword === key ? {...e, selected: true} : {...e, selected: false}));
+            };
 
             const handleSearch = (query) => {
                 // Handle the search logic here (e.g., fetch data, filter results)
                 console.log('Search Query:', query);
-                console.log('DATA:', bordeaux_iso_20min);
             };
             
             return (
                 <div id='main'>
                     <Navigation />
-                    <LeafletMap selected_gare = {selected_gare} />
+                    <LeafletMap selected_gare = {selection} />
                     <SearchBar onSearch={handleSearch} />
-                    <InlineList items={items} />
+                    <InlineList handleGetGare={get_key} items={items} />
                 </div>
             );
         }
