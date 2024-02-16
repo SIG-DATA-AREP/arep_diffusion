@@ -47,13 +47,18 @@ nav {
 .menu a:hover {
     box-shadow: #ccc 0px 1px 1px 1px;
 }
+// MAP INFOS
+.map_and_infos{
+    width: 800px;
+    margin: 0 auto;
+}
 
 /* MAP styles */
 .LeafletMap {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 5px 10%;
+    margin: 5px;
 }
 
 .LeafletMap-arrow {
@@ -83,12 +88,11 @@ nav {
 .search-bar {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin: 5px auto;
-    // margin-right: 250px;
+    // align-items: center;
+    margin: 5px 100px;
 
     input {
-        width: 15%;
+        width: 300px;
         padding: 10px;
         margin: 10px 0;
         border: 1px solid #ccc;
@@ -107,12 +111,12 @@ nav {
 
 /* InlineList styles */
 .inline-list {
-    width: 80%;
-    max-width: 80%;
+    width: 750px;
+    max-width: 750px;
     display: flex;
     // justify-content: space-between;
     align-items: center;
-    margin: 10px 0 0 15%;
+    margin: 10px 0 0 10px;
     // padding: -10px 0 0 0;
     overflow-x: auto;
     scrollbar-width: thin;
@@ -155,11 +159,15 @@ nav {
     }
 }
 
+//INFOS
+.infos{
+    position: relative;
+    // top: 40px;
+    // right: 10%;
+}
+
 /* Indicator title styles */
 .indicator-list{
-    position: fixed;
-    top: 50px;
-    left: 65%;
     .Indicator {
         display: flex;
         align-items: center;
@@ -198,9 +206,7 @@ nav {
 
 /* Indicator content styles */
 .indicator-list-content{
-    position: fixed;
-    top: 200px;
-    left: 65%;
+    margin-top: 40px;
     .Indicator {
         display: flex;
         align-items: center;

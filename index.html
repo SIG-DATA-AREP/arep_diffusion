@@ -98,10 +98,12 @@
         return (
             <div className='LeafletMap'>
                 <div className="LeafletMap-arrow" onClick={movePrev}> 	&#x3008; </div>
-                <div id="map" style={{ height: '500px', width: '500px', borderRadius: '50%', margin:'0 auto' }}></div>
+                <div id="map" style={{ height: '500px', width: '500px', borderRadius: '50%' }}></div>
                 <div className="LeafletMap-arrow" onClick={moveNext}> 	&#x3009; </div> 
-                <IndicatorListTitle data={list_of_gares[props.selected_gare]} />
-                <IndicatorList data={list_of_gares[props.selected_gare]} />
+                <div className="infos">
+                    <IndicatorListTitle data={list_of_gares[props.selected_gare]} />
+                    <IndicatorList data={list_of_gares[props.selected_gare]} />
+                </div>
             </div>
         );
     }
@@ -320,10 +322,12 @@
             
             return (
                 <div id='main'>
-                        <Navigation />
+                    <Navigation />
+                    <div className="map_and_infos">
                         <LeafletMap move_map={moveMap} selected_gare = {selection} />
                         <SearchBar onSearch={handleSearch} />
                         <InlineList handleGetGare={get_key} items={items} />
+                    </div>
                 </div>
             );
         }
