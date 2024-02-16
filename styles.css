@@ -149,7 +149,7 @@ nav {
 .indicator-list {
   position: fixed;
   top: 50px;
-  left: 75%;
+  left: 65%;
 }
 .indicator-list .Indicator {
   display: flex;
@@ -186,7 +186,7 @@ nav {
 .indicator-list-content {
   position: fixed;
   top: 200px;
-  left: 75%;
+  left: 65%;
 }
 .indicator-list-content .Indicator {
   display: flex;
