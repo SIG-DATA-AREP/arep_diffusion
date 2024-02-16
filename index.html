@@ -54,6 +54,7 @@
 
     //LEAFLET
     const LeafletMap = (props) => {
+        var uic_code = list_of_gares[props.selected_gare][0].code_uic;
         React.useEffect(() => {
             // Create a Leaflet map centered at [0, 0] with zoom level 2
             const map = L.map('map', { minZoom: 5 });
@@ -68,6 +69,18 @@
                     style: iso.style
                 }).addTo(map);
             });
+
+            var myIcon = L.icon({
+                iconUrl: './img/icon/marker.png',
+                iconSize: [15, 15]
+            });
+            //FETCH API
+            fetch(`https://ressources.data.sncf.com/api/explore/v2.1/catalog/datasets/referentiel-gares-voyageurs/records?select=wgs_84&where=uic_code LIKE "${uic_code}"`)
+                .then(response => response.json())
+                .then(data => {
+                    var lat = data.results[0].wgs_84.lat, lon = data.results[0].wgs_84.lon;
+                    L.marker([lat, lon], {icon: myIcon}).addTo(map);
+                });
 
             map.fitBounds(L.geoJSON((list_of_gares[props.selected_gare][0].feature)).getBounds());
             map.setZoom(11);
