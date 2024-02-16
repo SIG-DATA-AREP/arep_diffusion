@@ -12,7 +12,7 @@ const list_of_gares = {
             
             iso: "15 min",
             feature: bordeaux_iso_15min, 
-            style: {color: "#ff7800", weight: 1, fillColor: "#ff7800", fillOpacity: 0.2},
+            style: {color: "#e9888a", weight: 1, fillColor: "#e9888a", fillOpacity: 0.2},
         },
     ],
     lyon : [
@@ -28,7 +28,7 @@ const list_of_gares = {
 
             iso: "15 min",
             feature: lyon_iso_15min, 
-            style: {color: "#ff7800", weight: 0.5, fillColor: "#ff7800", fillOpacity: 0.3},
+            style: {color: "#e9888a", weight: 0.5, fillColor: "#e9888a", fillOpacity: 0.3},
         },
     ],
     marseille : [
@@ -44,7 +44,7 @@ const list_of_gares = {
 
             iso: "15 min",
             feature: marseille_iso_15min, 
-            style: {color: "#ff7800", weight: 0.5, fillColor: "#ff7800", fillOpacity: 0.3},
+            style: {color: "#e9888a", weight: 0.5, fillColor: "#e9888a", fillOpacity: 0.3},
         },
     ],
     nantes : [
@@ -60,7 +60,7 @@ const list_of_gares = {
 
             iso: "15 min",
             feature: nantes_iso_15min, 
-            style: {color: "#ff7800", weight: 0.5, fillColor: "#ff7800", fillOpacity: 0.3},
+            style: {color: "#e9888a", weight: 0.5, fillColor: "#e9888a", fillOpacity: 0.3},
         },
     ],
     strasbourg : [
@@ -76,7 +76,7 @@ const list_of_gares = {
 
             iso: "15 min",
             feature: strasbourg_iso_15min, 
-            style: {color: "#ff7800", weight: 0.5, fillColor: "#ff7800", fillOpacity: 0.3},
+            style: {color: "#e9888a", weight: 0.5, fillColor: "#e9888a", fillOpacity: 0.3},
         },
     ],
 }
