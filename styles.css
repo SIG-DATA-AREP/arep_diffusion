@@ -177,6 +177,10 @@ nav {
 }
 .indicator-list .Indicator .statValue {
   font-weight: bold;
+  font-size: large;
+}
+.indicator-list .Indicator .some_infos {
+  font-size: 9px;
 }
 .indicator-list .gares_title {
   font-size: 30px;
@@ -214,4 +218,5 @@ nav {
 }
 .indicator-list-content .Indicator .statValue {
   font-weight: bold;
+  font-size: large;
 }
