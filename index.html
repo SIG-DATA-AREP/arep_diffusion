@@ -86,12 +86,24 @@
         const moveNext = () => {
             props.move_map('next');
         };
+
+        const items_1 = [];
+        Object.keys(list_of_gares).forEach(function(key) {
+            items_1.push({
+                imageUrl: "./img/"+key+".png", 
+                code: list_of_gares[key][0].code_uic,
+                text: list_of_gares[key][0].name,
+                keyword:key,
+            });
+        });
         
         return (
             <div className='LeafletMap'>
                 <div className="LeafletMap-arrow" onClick={movePrev}> 	&#x3008; </div>
                 <div id="map" style={{ height: '500px', width: '500px', borderRadius: '50%', margin:'0 auto' }}></div>
-                <div className="LeafletMap-arrow" onClick={moveNext}> 	&#x3009; </div>
+                <div className="LeafletMap-arrow" onClick={moveNext}> 	&#x3009; </div> 
+                <IndicatorListTitle data={list_of_gares[props.selected_gare]} />
+                <IndicatorList data={list_of_gares[props.selected_gare]} />
             </div>
         );
     }
@@ -147,6 +159,76 @@
                         />
                     </div>
                 ))}
+            </div>
+        );
+    }
+
+    //LIST OF ELEMENT IN LINE
+    const IndicatorListTitle = (props) => {
+        const data = props.data[0];
+        return (
+            <div className="indicator-list">
+                <div className='Indicator-title' >
+                    <p className="element-text gares_title"> {data.name}</p>
+                </div>
+
+                <div className='Indicator' >
+                    <img src='./img/icon/frequentation.png' className="element-image" />
+                    <p className="element-text">
+                        <span title='comparée à Paris Gare du Nord > 211 M voyageurs en 2022'>Fréquentation</span>
+                        <span className="statValue">{parseFloat(data.frequentation/1000000).toFixed(1)} M voy.</span>
+                    </p>
+                </div>
+
+            </div>
+        );
+    }
+
+    const IndicatorList = (props) => {
+        const formNumber = (num) => new Intl.NumberFormat().format(num);
+        const data = props.data[0];
+        return (
+            <div className="indicator-list-content">
+
+                <div className='Indicator' >
+                    <img src='./img/icon/iso.png' className="element-image" />
+                    <p className="element-text">
+                        <span className="statZone">Zone accessible en moins de 10 minutes en transports en commun, puis 5 minutes à pieds</span>
+                    </p>
+                </div>
+
+                <div className='Indicator' >
+                    <img src='./img/icon/surface.png' className="element-image" />
+                    <p className="element-text">
+                        <span>Surface en hectares</span>
+                        <span className="statValue">{formNumber(parseFloat(data.surface).toFixed(0))} ha</span>
+                    </p>
+                </div>
+
+                <div className='Indicator' >
+                    <img src='./img/icon/pop.png' className="element-image" />
+                    <p className="element-text">
+                        <span>Population</span>
+                        <span className="statValue">{formNumber(data.population)} hab.</span>
+                    </p>
+                </div>
+
+                <div className='Indicator' >
+                    <img src='./img/icon/imp.png' className="element-image" />
+                    <p className="element-text">
+                        <span>Surface impérméable</span>
+                        <span className="statValue">{data.ratio_impermabilisation*100}%</span>
+                    </p>
+                </div>
+
+                <div className='Indicator' >
+                    <img src='./img/icon/arb.png' className="element-image" />
+                    <p className="element-text">
+                        <span>Surface arborée</span>
+                        <span className="statValue">{data.ratio_arbres*100}%</span>
+                    </p>
+                </div>
+                
             </div>
         );
     }
@@ -240,10 +322,10 @@
             
             return (
                 <div id='main'>
-                    <Navigation />
-                    <LeafletMap move_map={moveMap} selected_gare = {selection} />
-                    <SearchBar onSearch={handleSearch} />
-                    <InlineList handleGetGare={get_key} items={items} />
+                        <Navigation />
+                        <LeafletMap move_map={moveMap} selected_gare = {selection} />
+                        <SearchBar onSearch={handleSearch} />
+                        <InlineList handleGetGare={get_key} items={items} />
                 </div>
             );
         }

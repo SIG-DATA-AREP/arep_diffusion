@@ -53,11 +53,12 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 5px 15%;
+    margin: 5px 10%;
 }
 
 .LeafletMap-arrow {
     cursor: pointer;
+    display: none;
 }
 
 /* Add hover animation for .LeafletMap and .LeafletMap-arrow */
@@ -84,6 +85,7 @@ nav {
     flex-direction: column;
     align-items: center;
     margin: 5px auto;
+    // margin-right: 250px;
 
     input {
         width: 15%;
@@ -105,12 +107,12 @@ nav {
 
 /* InlineList styles */
 .inline-list {
-    width: 70%;
-    max-width: 70%;
+    width: 80%;
+    max-width: 80%;
     display: flex;
     // justify-content: space-between;
     align-items: center;
-    margin: 10px 0 0 15%;
+    margin: 10px 0 0 10%;
     padding: -10px 0 0 0;
     overflow-x: auto;
     scrollbar-width: thin;
@@ -150,5 +152,83 @@ nav {
     &.selected {
         box-shadow: inset #ccc 0px 1px 1px 1px;
         background: #ff78;
+    }
+}
+
+/* Indicator title styles */
+.indicator-list{
+    position: fixed;
+    top: 50px;
+    left: 75%;
+    .Indicator {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+        max-width: 200px;
+        // border: 1px dashed #ccc;
+        padding: 5px;
+        font-size: 15px;
+        
+        .element-image {
+            min-width: 50px;
+            width: 50px;
+            min-height: 50px;
+            height: 50px;
+            margin-right: 20px;
+        }
+
+        .element-text {
+            display: flex;
+            flex-direction: column;
+            font-size: 15px;
+            margin: 0;
+            text-align: start;
+        }
+        .statValue{
+            font-weight: bold;
+        }
+    }
+    .gares_title{
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+}
+
+
+/* Indicator content styles */
+.indicator-list-content{
+    position: fixed;
+    top: 200px;
+    left: 75%;
+    .Indicator {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+        max-width: 250px;
+        // border: 1px dashed #ccc;
+        padding: 5px;
+        font-size: 12px;
+        
+        .element-image {
+            min-width: 50px;
+            width: 50px;
+            margin-right: 20px;
+        }
+
+        .element-text {
+            display: flex;
+            flex-direction: column;
+            font-size: 12px;
+            margin: 0;
+            text-align: start;
+        }
+        .statZone{
+            font-size: 10px;
+            color: red;
+        }
+        .statValue{
+            font-weight: bold;
+        }
     }
 }
