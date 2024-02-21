@@ -39,15 +39,40 @@
     <script type="text/babel">
 
     // Navigation.js
-    const Navigation = () => {
+    const Navigation = (props) => {
+        
+        const [classCarte, setClassCarte] = React.useState('hide');
+        const [classIndicator, setClassIndicator] = React.useState('menu-toggle indicator');
+
+        const switch_map = () => {
+            props.switch_view('map');
+            setClassCarte('hide');
+            setClassIndicator('menu-toggle indicator');
+        };
+        const switch_ind = () => {
+            props.switch_view('ind');
+            setClassCarte('menu-toggle carte');
+            setClassIndicator('hide');
+        };
+        
+
+        React.useEffect(() => {
+
+
+        }, [classCarte, classIndicator]);
+
         return (
             <nav>
                 <div className="logo">
-                    <img src="img/logo_arep.png" alt="AREP" />
+                    <a target='_blank' href="https://www.arep.fr/">
+                        <img src="img/logo_arep.png" alt="AREP" />
+                    </a>
                 </div>
                 <ul className="menu">
                     <li><a target='_blank' href="https://plateforme.arep.fr/cartes-donnees/publications/sig/">Cartes et données</a></li>
                 </ul>
+                <div className={classCarte} onClick={switch_map}> Carte </div>
+                <div className={classIndicator} onClick={switch_ind}> Indicator </div>
             </nav>
         );
     }
@@ -112,11 +137,11 @@
             <div className='LeafletMap'>
                 <div className="LeafletMap-arrow" onClick={movePrev}> 	&#x3008; </div>
                 <div id="map" style={{ height: '500px', width: '500px', borderRadius: '50%' }}></div>
+                    <div className="infos">
+                        <IndicatorListTitle data={list_of_gares[props.selected_gare]} />
+                        <IndicatorList data={list_of_gares[props.selected_gare]} />
+                    </div>
                 <div className="LeafletMap-arrow" onClick={moveNext}> 	&#x3009; </div> 
-                <div className="infos">
-                    <IndicatorListTitle data={list_of_gares[props.selected_gare]} />
-                    <IndicatorList data={list_of_gares[props.selected_gare]} />
-                </div>
             </div>
         );
     }
@@ -295,6 +320,16 @@
                 setItems(items.map( e => e.keyword === key ? {...e, selected: true} : {...e, selected: false}));
             };
 
+            const switch_view = (view) => {
+                if(view === 'map') {
+                    document.getElementById('map').style.display = 'block';
+                    document.getElementsByClassName('infos')[0].style.display = 'none';
+                } else {
+                    document.getElementById('map').style.display = 'none';
+                    document.getElementsByClassName('infos')[0].style.display = 'block';
+                }
+            }
+
             const moveMap = (who) => {
                 const keys = Object.keys(list_of_gares);
                 const index = keys.indexOf(selection);
@@ -336,7 +371,7 @@
             
             return (
                 <div id='main'>
-                    <Navigation />
+                    <Navigation switch_view={switch_view} />
                     <div className="map_and_infos">
                         <LeafletMap move_map={moveMap} selected_gare = {selection} />
                         <SearchBar onSearch={handleSearch} />
