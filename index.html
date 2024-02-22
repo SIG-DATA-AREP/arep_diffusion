@@ -152,7 +152,7 @@
 
         const handleInputChange = (e) => {
             setQuery(e.target.value);
-            onSearch(query);
+            onSearch(e.target.value);
         };
 
         const handleSearch = () => {
@@ -365,8 +365,8 @@
             };
 
             const handleSearch = (query) => {
-                if(query.length > 1) setItems(items.filter(e => e.keyword.includes(query) ));
-                else setItems(items_1);
+                setItems(items_1);
+                if(query.length > 1) setItems(items_1.filter(e => e.keyword.includes(query) ));
             };
             
             return (
